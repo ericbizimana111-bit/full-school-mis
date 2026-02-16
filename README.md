@@ -16,75 +16,75 @@ A comprehensive, production-ready full-stack school management system built with
 - [Contributing](#contributing)
 - [License](#license)
 
-## ✨ Features
+##  Features
 
 ### Core Modules
 
-- **👥 User Management**
+- *** User Management**
   - Multi-role system (Admin, Teacher, Student, Parent, Accountant, Librarian)
   - JWT authentication & authorization
   - Profile management
   - Password reset
 
-- **📚 Student Management**
+- *** Student Management**
   - Student registration & enrollment
   - Academic records
   - Document management
   - Performance tracking
   - Hostel & transport allocation
 
-- **👨‍🏫 Teacher Management**
+- *** Teacher Management**
   - Employee records
   - Subject assignments
   - Class teacher designation
   - Performance reviews
   - Leave management
 
-- **📊 Attendance System**
+- *** Attendance System**
   - Daily attendance marking
   - Period-wise tracking
   - Attendance reports
   - Automated notifications
   - Analytics & statistics
 
-- **📝 Academic Management**
+- *** Academic Management**
   - Grade management
   - Exam scheduling
   - Report card generation
   - Assignment tracking
   - Timetable management
 
-- **💰 Fee Management**
+- *** Fee Management**
   - Fee structure setup
   - Payment processing
   - Receipt generation
   - Payment reminders
   - Financial reports
 
-- **📖 Library Management**
+- *** Library Management**
   - Book catalog
   - Issue/return tracking
   - Fine calculation
   - Borrowing history
 
-- **🚌 Transport Management**
+- *** Transport Management**
   - Route management
   - Vehicle tracking
   - Driver information
   - Student allocation
 
-- **🏠 Hostel Management**
+- *** Hostel Management**
   - Room allocation
   - Warden assignment
   - Facilities management
 
-- **📢 Communication**
+- *** Communication**
   - Announcements
   - Events calendar
   - Notifications
   - Email alerts
 
-## 🛠️ Tech Stack
+## * Tech Stack
 
 ### Backend
 - **Node.js** - Runtime environment
@@ -106,7 +106,7 @@ A comprehensive, production-ready full-stack school management system built with
 - **Axios** - HTTP client
 - **Context API** - State management
 
-## 📦 Prerequisites
+##  Prerequisites
 
 Before you begin, ensure you have the following installed:
 
@@ -115,7 +115,7 @@ Before you begin, ensure you have the following installed:
 - **npm** or **yarn**
 - **Git**
 
-## 🚀 Installation
+##  Installation
 
 ### 1. Clone the Repository
 
@@ -138,7 +138,7 @@ cd ../frontend
 npm install
 ```
 
-## ⚙️ Configuration
+##  Configuration
 
 ### 1. Create Environment Variables
 
@@ -184,7 +184,7 @@ For Gmail:
 2. Generate App Password
 3. Use app password in `.env`
 
-## 🌱 Database Seeding
+##  Database Seeding
 
 ### Create Necessary Directories
 
@@ -224,9 +224,9 @@ This will create:
 - Email: `robert.anderson@parent.com`
 - Password: `parent123`
 
-⚠️ **Important:** Change these passwords in production!
+ **Important:** Change these passwords in production!
 
-## 🏃‍♂️ Running the Application
+##  Running the Application
 
 ### Development Mode
 
@@ -258,7 +258,7 @@ cd frontend
 npm run build
 ```
 
-## 📚 API Documentation
+##  API Documentation
 
 ### Base URL
 ```
@@ -594,7 +594,7 @@ Common HTTP Status Codes:
 - `404` - Not Found
 - `500` - Internal Server Error
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 school-mis/
@@ -673,7 +673,7 @@ school-mis/
 5. Make fee payments
 6. Read announcements
 
-## 🔐 Security Features
+##  Security Features
 
 - Password hashing with bcrypt
 - JWT-based authentication
@@ -685,7 +685,7 @@ school-mis/
 - CORS configuration
 - Helmet security headers
 
-## 📊 Reporting Features
+##  Reporting Features
 
 The system generates various reports:
 - Attendance reports (Excel)
@@ -695,7 +695,7 @@ The system generates various reports:
 - Payment receipts (PDF)
 - Performance analytics
 
-## 🔄 Real-time Features
+##  Real-time Features
 
 Using Socket.io for:
 - Attendance notifications
@@ -703,7 +703,7 @@ Using Socket.io for:
 - Announcements
 - Live updates
 
-## 🧪 Testing
+##  Testing
 
 ```bash
 # Backend tests
@@ -715,7 +715,7 @@ cd frontend
 npm test
 ```
 
-## 📝 Scripts
+##  Scripts
 
 ```bash
 # Backend
@@ -731,7 +731,7 @@ npm run build      # Build for production
 npm test           # Run tests
 ```
 
-## 🤝 Contributing
+##  Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
@@ -739,15 +739,14 @@ npm test           # Run tests
 4. Push to branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📄 License
+##  License
 
 This project is licensed under the MIT License.
 
-## 👥 Support
+##  Support
 
 For support, email support@schoolmis.com or join our Slack channel.
-
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - Node.js community
 - MongoDB team
@@ -756,4 +755,4 @@ For support, email support@schoolmis.com or join our Slack channel.
 
 ---
 
-**Made with ❤️ for educational institutions**
+**Made with  for educational institutions**
