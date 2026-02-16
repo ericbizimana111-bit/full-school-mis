@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const path = require('path');
 const cors = require('cors');
 const morgan = require('morgan');
 const helmet = require('helmet');
@@ -15,15 +16,23 @@ const announcementRoutes = require('../routes/announcements');
 const eventRoutes = require('../routes/events');
 const leaveRoutes = require('../routes/leave');
 const notificationRoutes = require('../routes/notifications');
+const dashboardRoutes = require('../routes/dashboard');
+const attendanceRoutes = require('../routes/attendance');
+const examsRoutes = require('../routes/exams');
+const feesRoutes = require('../routes/fees');
+const gradesRoutes = require('../routes/grades');
+const tasksRoutes = require('../routes/tasks');
+const teachersRoutes = require('../routes/teachers');
+const studentsRoutes = require('../routes/students');
 const auth = require('../routes/auth');
-// const users = require('../routes/users');
-// const departments = require('../routes/departments');
-// const projects = require('../routes/projects');
-// const tasks = require('../routes/tasks');
-// const attendance = require('../routes/attendance');
 
-// Load env vars
-dotenv.config();
+// Load env vars from parent directory
+dotenv.config({ path: path.join(__dirname, '..', '.env') });
+
+// Set default API version if not provided
+if (!process.env.API_VERSION) {
+  process.env.API_VERSION = 'v1';
+}
 
 // Initialize app (MUST be before app.use())
 const app = express();
@@ -57,13 +66,16 @@ app.use('/api/announcements', announcementRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/leave', leaveRoutes);
 app.use('/api/notifications', notificationRoutes);
+app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/attendance', attendanceRoutes);
+app.use('/api/exams', examsRoutes);
+app.use('/api/fees', feesRoutes);
+app.use('/api/grades', gradesRoutes);
+app.use('/api/tasks', tasksRoutes);
+app.use('/api/teachers', teachersRoutes);
+app.use('/api/students', studentsRoutes);
 
 app.use(`/api/${process.env.API_VERSION}/auth`, auth);
-app.use(`/api/${process.env.API_VERSION}/users`, users);
-app.use(`/api/${process.env.API_VERSION}/departments`, departments);
-app.use(`/api/${process.env.API_VERSION}/projects`, projects);
-app.use(`/api/${process.env.API_VERSION}/tasks`, tasks);
-app.use(`/api/${process.env.API_VERSION}/attendance`, attendance);
 
 // Health check route
 app.get('/health', (req, res) => {
@@ -91,12 +103,11 @@ app.use(errorHandler);
 const PORT = process.env.PORT || 5000;
 const server = app.listen(PORT, () => {
   logger.info(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
-  console.log(`🚀 Server running on port ${PORT}`);
-  console.log(`📊 MIS System ready at http://localhost:${PORT}`);
   console.log(`Server running on port ${PORT}`);
+  console.log(`MIS System ready at http://localhost:${PORT}`);
 });
 
-// Handle unhandled promise rejections (single listener)
+// Handle unhandled promise rejections
 process.on('unhandledRejection', (err) => {
   logger.error(`Unhandled Rejection: ${err.message}`);
   server.close(() => process.exit(1));

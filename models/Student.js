@@ -112,8 +112,9 @@ const studentSchema = new mongoose.Schema({
         timestamps: true,
         toJSON: { virtuals: true },
         toObject: { virtuals: true }
-    }); // Indexes studentSchema.index({admissionNumber: 1 });
+    });
 
+// Indexes
 studentSchema.index({ class: 1, section: 1 });
 studentSchema.index({ academicYear: 1 });
 
@@ -124,7 +125,7 @@ studentSchema.virtual(
     ref: 'Attendance',
     localField: '_id',
     foreignField: 'student'
-}); 
+});
 
 // Virtual populate for grades studentSchema.virtual('grades', { ref: 'Grade', localField:'_id', foreignField: 'student' });
 

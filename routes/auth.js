@@ -16,8 +16,8 @@ router.post('/register', authLimiter, [
     body('role').isIn(['admin', 'teacher', 'student', 'parent']).withMessage('Invalid role')], validate, register);
 router.post('/login', authLimiter, [body('email').isEmail().withMessage('Please provide a valid email'),
 body('password').notEmpty().withMessage('Password is required')], validate, login);
-router.get(' / me', protect, getMe);
-router.put(' / updatedetails', protect, updateDetails);
+router.get('/me', protect, getMe);
+router.put('/updatedetails', protect, updateDetails);
 router.put('/updatepassword', protect, updatePassword);
 
 

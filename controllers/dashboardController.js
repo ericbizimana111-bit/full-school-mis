@@ -1,8 +1,14 @@
-const Student =
-    require('../models/Student'); const Teacher = require('../models/Teacher'); const Attendance =
-        require('../models/Attendance'); const Fee = require('../models/Fee'); const Exam = require('../models/Exam'); const
-            Event = require('../models/Event'); const logger = require('../utils/logger'); // @desc Get admin dashboard data //@route GET / api / dashboard / admin // @access Private/Admin
-// 
+const Student = require('../models/Student');
+const Teacher = require('../models/Teacher');
+const Attendance = require('../models/Attendance');
+const Fee = require('../models/Fee');
+const Exam = require('../models/Exam');
+const Event = require('../models/Event');
+const logger = require('../utils/logger');
+
+// @desc Get admin dashboard data
+// @route GET /api/dashboard/admin
+// @access Private/Admin 
 
 exports.getAdminDashboard = async (req, res, next) => {
     try {

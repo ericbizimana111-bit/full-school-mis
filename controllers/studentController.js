@@ -27,7 +27,7 @@ exports.getStudents = async (req, res, next) => {
             }).select('_id'); query.user = {
                 $in: users.map(u => u._id)
             };
-        } const students = await Student.find(query).populate('user', 'firstName lastName email phonephoto').populate('class', 'name grade').populate('parents').sort({ createdAt: -1 });
+        } const students = await Student.find(query).populate('user', 'firstName lastName email phone photo').populate('class', 'name grade').populate('parents').sort({ createdAt: -1 });
         res.status(200).json({ success: true, count: students.length, data: students });
     } catch (error) {
         logger.error(`Get Students Error: ${error.message}
@@ -100,7 +100,7 @@ exports.getStudentAttendance = async (req, res, next) => {
             if (endDate) query.date.$lte = new Date(endDate);
         }
 
-        const attendance = await Attendance.find(query).populate('subject', 'name').populate('markedBy', 'firstNamelastName').sort({ date: -1 }); // Calculate statistics 
+        const attendance = await Attendance.find(query).populate('subject', 'name').populate('markedBy', 'firstName lastName').sort({ date: -1 }); // Calculate statistics 
         const total = attendance.length;
         const present = attendance.filter(a => a.status === 'Present').length;
         const absent = attendance.filter(a => a.status === 'Absent').length;

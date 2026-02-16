@@ -1,5 +1,6 @@
 const Attendance = require('../models/Attendance');
 const Student = require('../models/Student');
+const mongoose = require('mongoose');
 const logger = require('../utils/logger'); // @desc Mark attendance // @route POST /api/attendance // @access Private/Teacher
 
 exports.markAttendance = async (req, res, next) => {
@@ -26,13 +27,12 @@ exports.markAttendance = async (req, res, next) => {
 
 
         const io = req.app.get('io');
-        io.to(`class_${classId} `).emit('attendance_marked',
-            {
-                date,
-                class: classId,
-                section,
-                count: attendanceRecords.length
-            }); res.status(201).json({ success: true, count: attendanceRecords.length, data: attendanceRecords });
+        io.to(`class_${classId}`).emit('attendance_marked', {
+            date,
+            class: classId,
+            section,
+            count: attendanceRecords.length
+        }); res.status(201).json({ success: true, count: attendanceRecords.length, data: attendanceRecords });
     } catch (error) {
         logger.error(`Mark Attendance Error: ${error.message} `);
         next(error);
@@ -68,13 +68,11 @@ exports.getAttendanceByClass = async (req, res, next) => {
     } catch (error) { next(error); }
 }; // @desc Get attendance report // @route GET /api/attendance/report
 // @access Private 
-
+// @route GET /api/attendance/report
+// @access Private
 exports.getAttendanceReport = async (req, res, next) => {
     try {
-        const { startDate,
-            endDate,
-            class: classId,
-            section } = req.query;
+        const { startDate, endDate, class: classId, section } = req.query;
         const match = {
             date: {
                 $gte: new Date(startDate),
@@ -82,8 +80,7 @@ exports.getAttendanceReport = async (req, res, next) => {
             }
         };
 
-
-        if (classId) match.class = mongoose.Types.ObjectId(classId);
+        if (classId) match.class = new mongoose.Types.ObjectId(classId);
         if (section) match.section = section;
 
         const report = await Attendance.aggregate([{ $match: match },

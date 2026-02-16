@@ -9,7 +9,7 @@ const {
   getMyTasks,
   getTaskStats
 } = require('../controllers/taskController');
-const { protect } = require('../middleware/auth');
+const { protect } = require('../middlewares/auth');
 
 const router = express.Router();
 
