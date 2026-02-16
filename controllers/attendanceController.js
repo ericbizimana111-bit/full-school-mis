@@ -66,7 +66,8 @@ exports.getAttendanceByClass = async (req, res, next) => {
         });
 
     } catch (error) { next(error); }
-}; // @desc Get attendance report // @route GET /api/attendance/report
+}; 
+// @desc Get attendance report // @route GET /api/attendance/report
 // @access Private 
 // @route GET /api/attendance/report
 // @access Private
