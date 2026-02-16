@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School MIS Architecture</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        .architecture {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid #e0e0e0;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 24px;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .folder {
+            margin: 10px 0;
+            padding: 12px 15px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            transition: all 0.2s;
+        }
+
+        .folder:hover {
+            background: #f0f4ff;
+            border-left-color: #764ba2;
+        }
+
+        .folder-name {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .file {
+            display: inline-block;
+            margin: 4px 8px 4px 0;
+            padding: 6px 12px;
+            background: #e8eaf6;
+            border-radius: 5px;
+            font-size: 0.85em;
+            color: #555;
+            transition: all 0.2s;
+        }
+
+        .file:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .flow-diagram {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .flow-title {
+            text-align: center;
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .flow-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .flow-box {
+            flex: 1;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid #667eea;
+            text-align: center;
+            position: relative;
+        }
+
+        .flow-box h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .flow-box ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .flow-box li {
+            padding: 8px 0;
+            color: #555;
+            border-bottom: 1px solid #eee;
+        }
+
+        .flow-box li:last-child {
+            border-bottom: none;
+        }
+
+        .arrow {
+            font-size: 3em;
+            color: #667eea;
+            flex: 0;
+        }
+
+        .tech-stack {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .tech-stack h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .tech-card {
+            background: rgba(255,255,255,0.15);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .tech-card h3 {
+            margin-bottom: 12px;
+            font-size: 1.2em;
+        }
+
+        .tech-card ul {
+            list-style: none;
+        }
+
+        .tech-card li {
+            padding: 5px 0;
+            font-size: 0.9em;
+            opacity: 0.95;
+        }
+
+        .tech-card li:before {
+            content: "✓ ";
+            margin-right: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .architecture {
+                grid-template-columns: 1fr;
+            }
+
+            .flow-container {
+                flex-direction: column;
+            }
+
+            .arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎓 School Management Information System</h1>
+        <p class="subtitle">Complete Full-Stack Architecture & File Structure</p>
+
+        <div class="architecture">
+            <!-- Backend Section -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="icon">🔧</div>
+                    <div class="section-title">Backend Structure</div>
+                </div>
+
+                <div class="folder">
+                    <div class="folder-name">📁 config/</div>
+                    <span class="file">database.js</span>
+                    <span class="file">cloudinary.js</span>
+                    <span class="file">email.js</span>
+                </div>
+
+                <div class="folder">
+                    <div class="folder-name">📁 models/</div>
+                    <span class="file">User.js</span>
+                    <span class="file">Student.js</span>
+                    <span class="file">Teacher.js</span>
+                    <span class="file">Parent.js</span>
+                    <span class="file">Class.js</span>
+                    <span class="file">Subject.js</span>
+                    <span class="file">Attendance.js</span>
+                    <span class="file">Grade.js</span>
+                    <span class="file">Exam.js</span>
+                    <span class="file">Assignment.js</span>
+                    <span class="file">Timetable.js</span>
+                    <span class="file">Fee.js</span>
+                    <span class="file">Payment.js</span>
+                    <span class="file">Library.js</span>
+                    <span class="file">Book.js</span>
+                    <span class="file">Transport.js</span>
+                    <span class="file">Hostel.js</span>
+                    <span class="file">Event.js</span>
+                    <span class="file">Announcement.js</span>
+                    <span class="file">Leave.js</span>
+                    <span class="file">Notification.js</span>
+                </div>
+
+                <div class="folder">
+                    <div class="folder-name">📁 controllers/</div>
+                    <span class="file">authController.js</span>
+                    <span class="file">studentController.js</span>
+                    <span class="file">teacherController.js</span>
+                    <span class="file">attendanceController.js</span>
+                    <span class="file">gradeController.js</span>
+                    <span class="file">examController.js</span>
+                    <span class="file">feeController.js</span>
+                    <span class="file">libraryController.js</span>
+                    <span class="file">transportController.js</span>
+                    <span class="file">dashboardController.js</span>
+                </div>
+
+                <div class="folder">
+                    <div class="folder-name">📁 middlewares/</div>
+                    <span class="file">auth.js</span>
+                    <span class="file">errorHandler.js</span>
+                    <span class="file">validate.js</span>
+                    <span class="file">upload.js</span>
+                    <span class="file">rateLimiter.js</span>
+                </div>
+
+                <div class="folder">
+                    <div class="folder-name">📁 routes/</div>
+                    <span class="file">auth.js</span>
+                    <span class="file">students.js</span>
+                    <span class="file">teachers.js</span>
+                    <span class="file">attendance.js</span>
+                    <span class="file">grades.js</span>
+                    <span class="file">exams.js</span>
+                    <span class="file">fees.js</span>
+                    <span class="file">dashboard.js</span>
+                </div>
+
+                <div class="folder">
+                    <div class="folder-name">📁 utils/</div>
+                    <span class="file">logger.js</span>
+                    <span class="file">emailService.js</span>
+                    <span class="file">pdfGenerator.js</span>
+                    <span class="file">excelGenerator.js</span>
+                    <span class="file">helpers.js</span>
+                </div>
+
+                <div class="folder">
+                    <div class="folder-name">📁 seeders/</div>
+                    <span class="file">seed.js</span>
+                </div>
+
+                <div class="folder">
+                    <div class="folder-name">📄 Root Files</div>
+                    <span class="file">server.js</span>
+                    <span class="file">.env</span>
+                    <span class="file">package.json</span>
+                </div>
+            </div>
+
+            <!-- Frontend Section -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="icon">🎨</div>
+                    <div class="section-title">Frontend Structure</div>
+                </div>
+
+                <div class="folder">
+                    <div class="folder-name">📁 public/</div>
+                    <span class="file">index.html</span>
+                    <span class="file">favicon.ico</span>
+                    <span class="file">manifest.json</span>
+                </div>
+
+                <div class="folder">
+                    <div class="folder-name">📁 src/components/</div>
+                    <span class="file">Dashboard/</span>
+                    <span class="file">Students/</span>
+                    <span class="file">Teachers/</span>
+                    <span class="file">Attendance/</span>
+                    <span class="file">Grades/</span>
+                    <span class="file">Exams/</span>
+                    <span class="file">Library/</span>
+                    <span class="file">Common/</span>
+                </div>
+
+                <div class="folder">
+                    <div class="folder-name">📁 src/context/</div>
+                    <span class="file">AuthContext.js</span>
+                    <span class="file">ThemeContext.js</span>
+                    <span class="file">NotificationContext.js</span>
+                </div>
+
+                <div class="folder">
+                    <div class="folder-name">📁 src/services/</div>
+                    <span class="file">api.js</span>
+                    <span class="file">authService.js</span>
+                    <span class="file">studentService.js</span>
+                    <span class="file">teacherService.js</span>
+                    <span class="file">attendanceService.js</span>
+                </div>
+
+                <div class="folder">
+                    <div class="folder-name">📁 src/utils/</div>
+                    <span class="file">constants.js</span>
+                    <span class="file">validators.js</span>
+                    <span class="file">formatters.js</span>
+                    <span class="file">helpers.js</span>
+                </div>
+
+                <div class="folder">
+                    <div class="folder-name">📄 Root Files</div>
+                    <span class="file">App.js</span>
+                    <span class="file">index.js</span>
+                    <span class="file">package.json</span>
+                    <span class="file">App.css</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Flow Diagram -->
+        <div class="flow-diagram">
+            <h2 class="flow-title">📊 System Architecture Flow</h2>
+            <div class="flow-container">
+                <div class="flow-box">
+                    <h3>Frontend (React)</h3>
+                    <ul>
+                        <li>User Interface</li>
+                        <li>Dashboards</li>
+                        <li>Forms & Tables</li>
+                        <li>Real-time Updates</li>
+                        <li>Reports & Analytics</li>
+                    </ul>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="flow-box">
+                    <h3>Backend (Node.js)</h3>
+                    <ul>
+                        <li>REST API</li>
+                        <li>Authentication</li>
+                        <li>Business Logic</li>
+                        <li>File Processing</li>
+                        <li>Email Service</li>
+                    </ul>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="flow-box">
+                    <h3>Database (MongoDB)</h3>
+                    <ul>
+                        <li>Student Records</li>
+                        <li>Academic Data</li>
+                        <li>Financial Records</li>
+                        <li>User Accounts</li>
+                        <li>System Logs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technology Stack -->
+        <div class="tech-stack">
+            <h2>🚀 Technology Stack</h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <h3>Backend</h3>
+                    <ul>
+                        <li>Node.js</li>
+                        <li>Express.js</li>
+                        <li>MongoDB</li>
+                        <li>Mongoose ODM</li>
+                        <li>JWT Authentication</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <h3>Frontend</h3>
+                    <ul>
+                        <li>React.js</li>
+                        <li>React Router</li>
+                        <li>Context API</li>
+                        <li>Axios</li>
+                        <li>CSS/Material-UI</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <h3>Features</h3>
+                    <ul>
+                        <li>File Upload (Cloudinary)</li>
+                        <li>PDF Generation</li>
+                        <li>Excel Export</li>
+                        <li>Email Notifications</li>
+                        <li>Real-time Updates</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <h3>Security</h3>
+                    <ul>
+                        <li>JWT Tokens</li>
+                        <li>Password Hashing</li>
+                        <li>Rate Limiting</li>
+                        <li>Input Validation</li>
+                        <li>CORS Protection</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
